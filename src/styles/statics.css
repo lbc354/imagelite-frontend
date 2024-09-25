@@ -1,0 +1,32 @@
+/* paleta de cores */
+:root {
+    --purple: indigo;
+    --white: white;
+}
+
+.header {
+    color: var(--white);
+    background-color: var(--purple);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer {
+    color: var(--white);
+    background-color: var(--purple);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.base {
+    padding-top: 3rem;
+    padding-bottom: 5rem;
+}
