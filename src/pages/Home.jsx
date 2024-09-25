@@ -4,11 +4,18 @@ import axios from "axios";
 
 export default function Home() {
 
+    const baseURL = 'http://localhost:8080/v1/images'
+
     const [images, setImages] = useState([]);
+    // parâmetros de pesquisa
+    const [query, setQuery] = useState('')
+    const [extension, setExtension] = useState('')
 
     const loadImages = async () => {
         try {
-            const result = await axios.get(`http://localhost:8080/v1/images`);
+            var urlGetImages = `${baseURL}?query=${query}&extension=${extension}`
+            console.log("urlGetImages: ", urlGetImages)
+            const result = await axios.get(urlGetImages);
             console.log(result.data);
             setImages(result.data);
         } catch (error) {
@@ -28,14 +35,16 @@ export default function Home() {
                     <button className='botao-adicionar-novo'>Add New</button>
                 </div>
                 <div className='search-container'>
-                    <input type="text" name="" id="" />
-                    <select name="" id="">
-                        <option value="">None</option>
+                    <input type="text" name="" id="" onChange={(e) => setQuery(e.target.value)} />
+                    <select name="" id="" onChange={(e) => setExtension(e.target.value)}>
+                        <option value="">All</option>
                         <option value="JPEG">JPEG</option>
                         <option value="PNG">PNG</option>
                         <option value="GIF">GIF</option>
                     </select>
-                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button onClick={loadImages}>
+                        <i className="fa-solid fa-magnifying-glass"></i>
+                    </button>
                 </div>
             </section>
 
@@ -45,7 +54,7 @@ export default function Home() {
                 <div className="galeria-container">
                     <div className="galeria">
                         {images.map((image, index) => (
-                            <CardGaleria url={image.url} name={image.name} uploadDate={image.uploadDate} size={image.size} extension={image.extension} />
+                            <CardGaleria index={index} url={image.url} name={image.name} uploadDate={image.uploadDate} size={image.size} extension={image.extension} />
                         ))}
                     </div>
                 </div>

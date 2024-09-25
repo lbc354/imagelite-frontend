@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function ImageCard({ url, name, uploadDate, size, extension }) {
+export default function ImageCard({ index, url, name, uploadDate, size, extension }) {
     return (
         <>
-            <div className='galeria-card'>
+            <div className='galeria-card' key={index}>
                 <div className="galeria-imagem">
                     <img src={url} alt={name} />
                 </div>
