@@ -1,5 +1,42 @@
 /* home | galeria */
+.botao-adicionar-novo {
+    font-size: 1rem;
+    padding: .5rem 1rem;
+    margin-bottom: 1rem;
+}
+
+.search-container {
+    height: 3rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-container input {
+    padding: 1rem;
+    height: 100%;
+    width: 60%;
+    max-width: 30rem;
+    font-size: 1rem;
+}
+
+.search-container select {
+    height: 100%;
+    width: 25%;
+    max-width: 5rem;
+    font-size: 1rem;
+}
+
+.search-container button {
+    height: 100%;
+    width: 15%;
+    max-width: 3rem;
+    font-size: 1rem;
+}
+
 .galeria {
+    margin-top: 3rem;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -29,10 +66,12 @@
     border-radius: 0 0 1rem 1rem;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 /* responsividade */
-@media(max-width: 500px) {
+@media(max-width: 800px) {
     .galeria-card {
         width: 100%;
     }
