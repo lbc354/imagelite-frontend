@@ -4,23 +4,25 @@ import axios from "axios";
 
 export default function Home() {
 
-    const baseURL = 'http://localhost:8080/v1/images'
+    const baseURL = 'http://localhost:8080/v1/images';
 
     const [images, setImages] = useState([]);
     // parâmetros de pesquisa
-    const [query, setQuery] = useState('')
-    const [extension, setExtension] = useState('')
+    const [query, setQuery] = useState('');
+    const [extension, setExtension] = useState('');
+    // carregando conteúdo
+    const [loading, setLoading] = useState(false);
 
     const loadImages = async () => {
+        setLoading(true);
         try {
-            var urlGetImages = `${baseURL}?query=${query}&extension=${extension}`
-            console.log("urlGetImages: ", urlGetImages)
-            const result = await axios.get(urlGetImages);
-            console.log(result.data);
+            const result = await axios.get(`${baseURL}?query=${query}&extension=${extension}`);
             setImages(result.data);
         } catch (error) {
-            console.log(error)
-            alert("erro")
+            console.log(error);
+            alert("erro");
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -51,13 +53,18 @@ export default function Home() {
 
 
             <section>
-                <div className="galeria-container">
-                    <div className="galeria">
-                        {images.map((image, index) => (
-                            <CardGaleria index={index} url={image.url} name={image.name} uploadDate={image.uploadDate} size={image.size} extension={image.extension} />
-                        ))}
+                {loading
+                    ?
+                    <div className="loader"></div>
+                    :
+                    <div className="galeria-container">
+                        <div className="galeria">
+                            {images.map((image, index) => (
+                                <CardGaleria index={index} url={image.url} name={image.name} uploadDate={image.uploadDate} size={image.size} extension={image.extension} loading={loading} />
+                            ))}
+                        </div>
                     </div>
-                </div>
+                }
             </section>
         </>
     )
