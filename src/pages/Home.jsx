@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import CardGaleria from '../components/CardGaleria';
 import axios from "axios";
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export default function Home() {
 
@@ -18,9 +20,12 @@ export default function Home() {
         try {
             const result = await axios.get(`${baseURL}?query=${query}&extension=${extension}`);
             setImages(result.data);
+            if (!result.data.length) {
+                toast.warning('Nenhum item encontrado');
+            }
         } catch (error) {
-            console.log(error);
-            alert("erro");
+            console.error(error);
+            toast.error("Ocorreu um erro");
         } finally {
             setLoading(false);
         }
@@ -34,7 +39,9 @@ export default function Home() {
         <>
             <section>
                 <div>
-                    <button className='botao-adicionar-novo'>Add New</button>
+                    <Link to="/upload">
+                        <button className='botao-adicionar-novo'>Add New</button>
+                    </Link>
                 </div>
                 <div className='search-container'>
                     <input type="text" name="" id="" onChange={(e) => setQuery(e.target.value)} />

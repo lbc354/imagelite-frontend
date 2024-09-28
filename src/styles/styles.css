@@ -5,7 +5,7 @@
     width: fit-content;
     font-weight: bold;
     font-family: monospace;
-    font-size: 2rem;
+    font-size: 1.5rem;
     clip-path: inset(0 3ch 0 0);
     animation: l4 1s steps(4) infinite;
 }
@@ -22,6 +22,8 @@
 
 :root {
     --box-shadow: rgba(0, 0, 0, .1);
+    --bg-white: whitesmoke;
+    --bg-green: #28A745;
 }
 
 /* home | galeria */
@@ -76,7 +78,7 @@
 .galeria-card {
     width: 48%;
     transition: 1s;
-    border-radius: 1rem;
+    border-radius: .5rem;
     box-shadow: 0 .1rem 1rem var(--box-shadow);
 }
 
@@ -84,15 +86,20 @@
     transform: translateY(-1rem);
 }
 
+.galeria-imagem {
+    display: flex;
+    justify-content: center;
+}
+
 .galeria-imagem img {
-    width: 100%;
-    border-radius: 1rem 1rem 0 0;
+    border-radius: .5rem;
+    max-width: 100%;
+    max-height: 30rem;
     cursor: pointer;
 }
 
 .galeria-info {
     padding: 1rem 1rem 1.5rem;
-    border-radius: 0 0 1rem 1rem;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -104,4 +111,56 @@
     .galeria-card {
         width: 100%;
     }
+}
+
+/* navegação entre páginas */
+.nav-pages {
+    margin-bottom: 1rem;
+}
+
+/* formulário */
+form {
+    background-color: var(--box-shadow);
+    width: 90%;
+    max-width: 700px;
+    margin: auto;
+    padding: 3rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+form label,
+form input {
+    font-size: 1.2rem;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+form input,
+form button {
+    border: none;
+    border-radius: .5rem;
+    padding: .5rem;
+}
+
+.btn-submit {
+    background-color: var(--bg-green);
+    color: var(--bg-white);
+    cursor: pointer;
+}
+
+.preview-image {
+    display: flex;
+    justify-content: center;
+    margin-bottom: .5rem;
+}
+
+.preview-image img {
+    max-width: 100%;
 }
