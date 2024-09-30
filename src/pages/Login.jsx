@@ -5,6 +5,9 @@ import { toast } from 'react-toastify';
 
 export default function Login() {
 
+    // localStorage.setItem('token', token_value)
+    // localStorage.removeItem('token')
+
     const [loading, setLoading] = useState(false);
     // const [errorMsgs, setErrorMsgs] = useState([]);
 
@@ -26,13 +29,22 @@ export default function Login() {
         event.preventDefault();
         setLoading(true);
         const url = 'http://localhost:8080/v1/users/auth';
+        
         try {
-            await axios.post(url);
+            const res = await axios.post(url, user);
+            console.log(res)
             toast.success('Logado(a)');
-        } catch (error) {
+        }
+        catch (error) {
+            if (error.status === 401) {
+                toast.warning('E-mail ou Senha incorretos');
+                setLoading(false);
+                return;
+            }
             console.error(error);
             toast.error('Ocorreu um erro');
-        } finally {
+        }
+        finally {
             setLoading(false);
         }
     }

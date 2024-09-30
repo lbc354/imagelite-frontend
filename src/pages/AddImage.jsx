@@ -122,14 +122,14 @@ export default function AddImage() {
                 {preview && (
                     <div className="preview">
                         <div className="preview-image">
-                            <img src={preview} alt="Image Preview" />
+                            <img src={preview} alt="preview" />
                         </div>
                         <span>{formatBytes(image.file.size)} / 3MB (máx.)</span>
                     </div>
                 )}
 
-                {/* {errorMsg ?
-
+                {/* {errorMsg
+                    ?
                     <div>
                         <ul>
                             {errorMsgs.map((message, index) => (
@@ -137,8 +137,8 @@ export default function AddImage() {
                             ))}
                         </ul>
                     </div>
-
-                    : null
+                    :
+                    null
                 } */}
 
                 {loading

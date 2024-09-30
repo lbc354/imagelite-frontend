@@ -12,6 +12,7 @@ export default function Register() {
         username: '',
         email: '',
         password: '',
+        confirmPassword: '',
     });
 
     const handleChange = (e) => {
@@ -27,13 +28,33 @@ export default function Register() {
         event.preventDefault();
         setLoading(true);
         const url = 'http://localhost:8080/v1/users';
+
+        if (user.username === '' || user.email === '' || user.password === '') {
+            toast.warning('Preencha o formulário');
+            setLoading(false);
+            return;
+        }
+        if (user.password !== user.confirmPassword) {
+            toast.warning('Senhas não batem');
+            setLoading(false);
+            return;
+        }
+
         try {
-            await axios.post(url);
+            const res = await axios.post(url, user);
+            console.log(res);
             toast.success('Cadastrado(a)');
-        } catch (error) {
+        }
+        catch (error) {
+            if (error.response.data.error) {
+                toast.warning(error.response.data.error);
+                setLoading(false);
+                return;
+            }
             console.error(error);
             toast.error('Ocorreu um erro');
-        } finally {
+        }
+        finally {
             setLoading(false);
         }
     }
@@ -53,6 +74,7 @@ export default function Register() {
                         name="username"
                         value={user.username}
                         onChange={handleChange}
+                        maxLength={30}
                         required
                     />
                 </div>
@@ -77,6 +99,7 @@ export default function Register() {
                         name="password"
                         value={user.password}
                         onChange={handleChange}
+                        minLength={8}
                         required
                     />
                 </div>
@@ -89,6 +112,7 @@ export default function Register() {
                         name="confirmPassword"
                         value={user.confirmPassword}
                         onChange={handleChange}
+                        minLength={8}
                         required
                     />
                 </div>

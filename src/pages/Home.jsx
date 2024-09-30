@@ -67,7 +67,9 @@ export default function Home() {
                     <div className="galeria-container">
                         <div className="galeria">
                             {images.map((image, index) => (
-                                <CardGaleria index={index} url={image.url} name={image.name} uploadDate={image.uploadDate} size={image.size} extension={image.extension} loading={loading} />
+                                <div className='galeria-card' key={index}>
+                                    <CardGaleria index={index} url={image.url} name={image.name} uploadDate={image.uploadDate} size={image.size} extension={image.extension} loading={loading} />
+                                </div>
                             ))}
                         </div>
                     </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function ImageCard({ index, url, name, uploadDate, size, extension }) {
+export default function ImageCard({ url, name, uploadDate, size, extension }) {
 
     function download() {
         // https://developer.mozilla.org/en-US/docs/Web/API/Window/open#examples
@@ -21,14 +21,12 @@ export default function ImageCard({ index, url, name, uploadDate, size, extensio
 
     return (
         <>
-            <div className='galeria-card' key={index}>
-                <div className="galeria-imagem">
-                    <img src={url} alt={name} onClick={download} />
-                </div>
-                <div className="galeria-info">
-                    <p><strong>{name}</strong></p>
-                    <p>{uploadDate} | {formatBytes(size)} | {extension}</p>
-                </div>
+            <div className="galeria-imagem">
+                <img src={url} alt={name} onClick={download} />
+            </div>
+            <div className="galeria-info">
+                <p><strong>{name}</strong></p>
+                <p>{uploadDate} | {formatBytes(size)} | {extension}</p>
             </div>
         </>
     )

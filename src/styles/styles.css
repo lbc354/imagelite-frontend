@@ -28,14 +28,13 @@
 
 /* home | galeria */
 .botao-adicionar-novo {
-    font-size: 1rem;
     padding: .5rem 1rem;
     margin-bottom: 1rem;
     cursor: pointer;
 }
 
 .search-container {
-    height: 3rem;
+    height: 2rem;
     width: 100%;
     display: flex;
     align-items: center;
@@ -43,18 +42,16 @@
 }
 
 .search-container input {
-    padding: 1rem;
+    padding: .5rem;
     height: 100%;
     width: 60%;
     max-width: 30rem;
-    font-size: 1rem;
 }
 
 .search-container select {
     height: 100%;
     width: 25%;
     max-width: 5rem;
-    font-size: 1rem;
     cursor: pointer;
 }
 
@@ -62,7 +59,6 @@
     height: 100%;
     width: 15%;
     max-width: 3rem;
-    font-size: 1rem;
     cursor: pointer;
 }
 
@@ -115,6 +111,7 @@
 
 /* navegação entre páginas */
 .nav-pages {
+    display: inline-block;
     margin-bottom: 1rem;
 }
 
@@ -122,7 +119,7 @@
 form {
     background-color: var(--box-shadow);
     width: 90%;
-    max-width: 700px;
+    max-width: 35rem;
     margin: auto;
     padding: 3rem;
     border-radius: 1rem;
@@ -131,22 +128,22 @@ form {
     gap: 2rem;
 }
 
-form label,
-form input {
-    font-size: 1.2rem;
+form input,
+form button {
+    border: none;
+    border-radius: .5rem;
+    padding: .5rem;
+    font-size: 1rem;
+}
+
+form span {
+    font-size: .8rem;
 }
 
 .campo {
     display: flex;
     flex-direction: column;
     gap: .5rem;
-}
-
-form input,
-form button {
-    border: none;
-    border-radius: .5rem;
-    padding: .5rem;
 }
 
 .btn-submit {
