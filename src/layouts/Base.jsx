@@ -1,14 +1,17 @@
 import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
+import { Outlet } from 'react-router-dom';
 
-export default function Base({ children }) {
+// Ao usar o <Outlet /> no seu componente Base, você permite que o React Router injete os componentes correspondentes às rotas filhas naquele ponto.
+
+export default function Base() {
     return (
         <>
             <Header />
-            <div className='base'>
-                {children}
-            </div>
+            <main className='base'>
+                <Outlet />
+            </main>
             <Footer />
         </>
     )

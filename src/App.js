@@ -7,6 +7,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Base from './layouts/Base';
 import Home from './pages/Home';
 import AddImage from './pages/AddImage';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 function App() {
   return (
@@ -25,17 +27,17 @@ function App() {
         transition={Zoom} />
 
       <Router>
-        {/* rotas com cabeçalho e rodapé */}
-        <Base>
-          <Routes>
+        <Routes>
+          {/* rotas com cabeçalho e rodapé */}
+          <Route element={<Base />}>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/upload" element={<AddImage />} />
-          </Routes>
-        </Base>
+            <Route exact path="/login" element={<Login />} />
+            <Route exact path="/register" element={<Register />} />
+          </Route>
 
-        {/* rotas sem cabeçalho e rodapé */}
-        <Routes>
-          <Route />
+          {/* rotas sem cabeçalho e rodapé */}
+          {/* <Route exact path="/login" element={<Login />} /> */}
         </Routes>
       </Router>
     </>
