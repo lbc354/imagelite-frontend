@@ -31,17 +31,35 @@ function App() {
       <AuthProvider>
         <Router>
           <Routes>
+
             {/* rotas com cabeçalho e rodapé */}
             <Route element={<Base />}>
+
               {/* rotas públicas */}
-              <Route exact path="/" element={<Home />} />
-              <Route exact path="/login" element={<Login />} />
-              <Route exact path="/register" element={<Register />} />
+              <Route exact path="/" element={
+                <Home />
+              } />
+
+              <Route exact path="/login" element={
+                <Login />
+              } />
+
+              <Route exact path="/register" element={
+                <Register />
+              } />
+
               {/* rotas privadas */}
-              <Route exact path="/upload" element={<PrivateRoute><AddImage /></PrivateRoute>} />
+              <Route exact path="/upload" element={
+                <PrivateRoute>
+                  <AddImage />
+                </PrivateRoute>
+              } />
+
             </Route>
+
             {/* rotas sem cabeçalho e rodapé */}
             {/* <Route exact path="/" element={<Home />} /> */}
+
           </Routes>
         </Router>
       </AuthProvider>

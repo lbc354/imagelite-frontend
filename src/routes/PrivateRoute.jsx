@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Navigate } from "react-router-dom";
+import { AuthContext } from '../contexts/AuthContext';
 
 export default function PrivateRoute({ children }) {
-    const token = localStorage.getItem('token')
+    const { token } = useContext(AuthContext);
 
     // tem que criar uma função para validar token no back
 

@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { AuthContext } from '../contexts/AuthContext';
 
 export default function AddImage() {
+    const { decodedToken } = useContext(AuthContext);
 
     const [loading, setLoading] = useState(false);
     // const [errorMsgs, setErrorMsgs] = useState([]);
@@ -80,7 +82,7 @@ export default function AddImage() {
             <span className='nav-pages'><Link to="/">Home</Link> / Upload</span>
 
             <form onSubmit={handleSubmit}>
-                <h2>Upload Image</h2>
+                <h2>Upload Image as {decodedToken.username}</h2>
 
                 <div className="campo">
                     <label htmlFor="name">Enter image name: *</label>
