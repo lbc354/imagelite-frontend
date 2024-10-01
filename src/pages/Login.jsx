@@ -1,27 +1,35 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { AuthContext } from '../contexts/AuthContext';
 
 export default function Login() {
 
-    // localStorage.setItem('token', token_value)
-    // localStorage.removeItem('token')
+    const { setToken } = useContext(AuthContext); // acessando o setter de token do contexto
+    const navigate = useNavigate();
+    const location = useLocation();
+    const messageFromUploadImages = location.state?.message;
+
+    useEffect(() => {
+        if (messageFromUploadImages) {
+            toast.warning(messageFromUploadImages);
+            // redireciona para a página atual limpando o state
+            navigate(location.pathname, { replace: true });
+        }
+    }, [messageFromUploadImages, navigate, location.pathname]);
 
     const [loading, setLoading] = useState(false);
-    // const [errorMsgs, setErrorMsgs] = useState([]);
-
     const [user, setUser] = useState({
         email: '',
         password: '',
     });
 
     const handleChange = (e) => {
-        const { name, value, files } = e.target;
-
+        const { name, value } = e.target;
         setUser((prevState) => ({
             ...prevState,
-            [name]: files ? files[0] : value,
+            [name]: value,
         }));
     };
 
@@ -29,25 +37,24 @@ export default function Login() {
         event.preventDefault();
         setLoading(true);
         const url = 'http://localhost:8080/v1/users/auth';
-        
+
         try {
             const res = await axios.post(url, user);
-            console.log(res)
+            const token = res.data.accessToken;
+            setToken(token); // atualizando o token no contexto
             toast.success('Logado(a)');
-        }
-        catch (error) {
+            navigate('/');
+        } catch (error) {
+            console.error(error);
             if (error.status === 401) {
                 toast.warning('E-mail ou Senha incorretos');
-                setLoading(false);
-                return;
+            } else {
+                toast.error('Ocorreu um erro');
             }
-            console.error(error);
-            toast.error('Ocorreu um erro');
-        }
-        finally {
+        } finally {
             setLoading(false);
         }
-    }
+    };
 
     return (
         <>
