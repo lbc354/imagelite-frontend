@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { AuthContext } from '../contexts/AuthContext';
 
 export default function AddImage() {
-    const { decodedToken } = useContext(AuthContext);
+    const { token, decodedToken } = useContext(AuthContext);
 
     const [loading, setLoading] = useState(false);
     // const [errorMsgs, setErrorMsgs] = useState([]);
@@ -49,6 +49,7 @@ export default function AddImage() {
         const headers = {
             headers: {
                 'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${token}`,
             },
         };
         try {

@@ -7,5 +7,5 @@ export default function PrivateRoute({ children }) {
 
     // tem que criar uma função para validar token no back
 
-    return token ? children : <Navigate to="/login" state={{ message: "To upload images, sign in" }} />
+    return token ? children : <Navigate to="/login" state={{ message: "You must sign in" }} />
 }

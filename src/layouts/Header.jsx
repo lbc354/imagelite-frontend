@@ -22,7 +22,7 @@ export default function Header() {
                 ?
                 <div>
                     <span style={{ display: 'block' }}>Olá, {decodedToken.username}</span>
-                    <span onClick={logout}>Logout</span>
+                    <span style={{ cursor: 'pointer' }} onClick={logout}>Logout</span>
                 </div>
                 :
                 <Link to={'/login'} style={{ color: 'whitesmoke' }}>
