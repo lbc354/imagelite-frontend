@@ -41,7 +41,7 @@ export default function AddImage() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         setLoading(true);
-        const url = 'http://localhost:8080/v1/images';
+        const url = process.env.PUBLIC_URL + '/v1/images';
         const formData = new FormData();
         formData.append('file', image.file);
         formData.append('name', image.name);

@@ -27,7 +27,7 @@ export default function Register() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         setLoading(true);
-        const url = 'http://localhost:8080/v1/users';
+        const url = process.env.PUBLIC_URL + '/v1/users';
 
         if (user.username === '' || user.email === '' || user.password === '') {
             toast.warning('Preencha o formulário');

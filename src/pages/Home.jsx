@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 
 export default function Home() {
 
-    const baseURL = 'http://localhost:8080/v1/images';
+    const baseURL = process.env.PUBLIC_URL + '/v1/images';
 
     const [images, setImages] = useState([]);
     // parâmetros de pesquisa

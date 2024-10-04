@@ -36,7 +36,7 @@ export default function Login() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         setLoading(true);
-        const url = 'http://localhost:8080/v1/users/auth';
+        const url = process.env.PUBLIC_URL + '/v1/users/auth';
 
         try {
             const res = await axios.post(url, user);
